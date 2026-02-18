@@ -69,7 +69,7 @@ graph TB
 
 ```bash
 # 1. Clone 專案
-git clone https://github.com/LanLan/BNB_Hack.git
+git clone https://github.com/LanLan0427/BNB_Hack.git
 cd BNB_Hack
 
 # 2. 建立虛擬環境
