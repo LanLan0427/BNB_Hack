@@ -59,24 +59,36 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
-        # Web3 setup
-        rpc_url = os.getenv("BSC_RPC_URL", "https://data-seed-prebsc-1-s1.bnbchain.org:8545")
+        # Web3 setup - 優先使用 opBNB
+        opbnb_rpc = os.getenv("OPBNB_RPC_URL")
+        bsc_rpc = os.getenv("BSC_RPC_URL", "https://data-seed-prebsc-1-s1.bnbchain.org:8545")
+        
+        if opbnb_rpc:
+            self.network_name = "opBNB Testnet"
+            rpc_url = opbnb_rpc
+            contract_addr = os.getenv("OPBNB_CONTRACT_ADDRESS", os.getenv("LEADERBOARD_CONTRACT_ADDRESS", ""))
+        else:
+            self.network_name = "BSC Testnet"
+            rpc_url = bsc_rpc
+            contract_addr = os.getenv("LEADERBOARD_CONTRACT_ADDRESS", "")
+
+        logger.info(f"Connecting to {self.network_name}...")
         self.w3 = Web3(Web3.HTTPProvider(rpc_url))
         self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
 
         if not self.w3.is_connected():
-            logger.warning("無法連線到 BSC RPC: %s", rpc_url)
+            logger.warning("無法連線到 RPC: %s", rpc_url)
 
         # 合約
-        contract_addr = os.getenv("LEADERBOARD_CONTRACT_ADDRESS", "")
         if contract_addr:
             self.contract = self.w3.eth.contract(
                 address=Web3.to_checksum_address(contract_addr),
                 abi=LEADERBOARD_ABI,
             )
+            logger.info(f"Loaded Leaderboard contract at {contract_addr}")
         else:
             self.contract = None
-            logger.warning("LEADERBOARD_CONTRACT_ADDRESS 未設定，鏈上功能將無法使用")
+            logger.warning("CONTRACT_ADDRESS 未設定，鏈上功能將無法使用")
 
         # Bot 錢包（用於發送交易）
         self.private_key = os.getenv("BOT_WALLET_PRIVATE_KEY", "")
@@ -145,6 +157,13 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                 roi_pct = roi_bps / 100
 
                 if receipt["status"] == 1:
+                    if "opBNB" in self.network_name:
+                        explorer_url = f"https://opbnb-testnet.bscscan.com/tx/{tx_hash.hex()}"
+                        footer_text = "Quant Sniper — opBNB Testnet (Layer 2)"
+                    else:
+                        explorer_url = f"https://testnet.bscscan.com/tx/{tx_hash.hex()}"
+                        footer_text = "Quant Sniper — BSC Testnet"
+
                     embed = discord.Embed(
                         title="⛓️ 鏈上提交成功！",
                         color=0x00E676,
@@ -153,10 +172,10 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                     embed.add_field(name="📊 你的 ROI", value=f"`{roi_pct:+.2f}%`", inline=True)
                     embed.add_field(
                         name="🔗 交易 Hash",
-                        value=f"[BscScan](https://testnet.bscscan.com/tx/{tx_hash.hex()})",
+                        value=f"[View on Explorer]({explorer_url})",
                         inline=True,
                     )
-                    embed.set_footer(text="Quant Sniper — BSC Testnet")
+                    embed.set_footer(text=footer_text)
                     await ctx.send(embed=embed)
                 else:
                     await ctx.send("❌ 鏈上交易失敗，請稍後再試。")
