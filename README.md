@@ -23,7 +23,7 @@
 
 | 功能 | 說明 |
 |---|---|
-| 🤖 **AI 市場分析** | Gemini AI 扮演毒舌華爾街交易員，用繁體中文給出犀利評論 |
+| 🤖 **AI 市場分析** | Gemini AI 扮演毒舌華爾街交易員，用繁體中文給出犀利評論（具備 Rate Limit 自動重試機制） |
 | 🎮 **模擬交易遊戲** | 每人 10,000 USDT 虛擬資金，以即時價格買賣 |
 | ⛓️ **鏈上排行榜** | ROI 成績上鏈到 BNB Chain（BSC Testnet），公開透明 |
 | 📊 **即時報價** | 串接 Binance API，取得最新市場數據 |
@@ -74,7 +74,7 @@ cd BNB_Hack
 
 # 2. 建立虛擬環境
 python -m venv .venv
-.venv\Scripts\activate  # Windows
+.\.venv\Scripts\activate  # Windows
 # source .venv/bin/activate  # macOS/Linux
 
 # 3. 安裝相依套件
@@ -109,14 +109,15 @@ python main.py
 quant-sniper/
 ├── main.py                     # Bot 入口
 ├── cogs/
-│   ├── market.py               # AI 市場分析（ccxt + Gemini）
-│   ├── game.py                 # 模擬交易（SQLite）
-│   └── chain.py                # 鏈上排行榜（Web3.py）
+├── market.py               # AI 市場分析（ccxt + Gemini）
+├── game.py                 # 模擬交易（SQLite）
+└── chain.py                # 鏈上排行榜（Web3.py）
 ├── contracts/
-│   └── Leaderboard.sol         # 排行榜智能合約
+└── Leaderboard.sol         # 排行榜智能合約
 ├── data/                       # SQLite 資料庫（自動建立）
 ├── requirements.txt
 ├── .env.example
+├── WALKTHROUGH.md              # 開發與修復紀錄
 └── README.md
 ```
 
@@ -142,6 +143,7 @@ quant-sniper/
 | `web3.py` | BNB Chain 智能合約互動 |
 | `sqlite3` | 本地模擬交易資料儲存 |
 | `Solidity` | 鏈上排行榜智能合約 |
+| `tenacity` | API 重試機制 (Rate Limit Handling) |
 
 ---
 
