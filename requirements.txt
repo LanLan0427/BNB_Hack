@@ -6,3 +6,4 @@ aiohttp>=3.9.0
 web3[c-kzg]>=6.0.0 
 matplotlib>=3.8.0
 numpy<2.0
+tenacity>=8.0.0

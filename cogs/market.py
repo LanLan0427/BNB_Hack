@@ -14,6 +14,12 @@ from discord.ext import commands
 from discord import app_commands
 from google import genai
 from google.genai import types
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception
+
+def is_retryable_error(exception):
+    """Check if the exception is a rate limit or server error."""
+    msg = str(exception).lower()
+    return "429" in msg or "500" in msg or "503" in msg or "resource_exhausted" in msg
 
 import matplotlib
 matplotlib.use("Agg")  # headless backend
@@ -52,10 +58,27 @@ class Market(commands.Cog, name="📊 市場分析"):
             raise EnvironmentError("GEMINI_API_KEY is not set in .env")
 
         self.client = genai.Client(api_key=api_key)
-        self.model_name = "gemini-2.0-flash"
+        self.model_name = "gemini-2.5-flash"
 
     async def cog_unload(self) -> None:
         await self.exchange.close()
+
+    @retry(
+        retry=retry_if_exception(is_retryable_error),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        stop=stop_after_attempt(3),
+        reraise=True
+    )
+    async def _generate_content_with_retry(self, data_str: str) -> str:
+        """Call Gemini API with retry logic."""
+        response = await self.client.aio.models.generate_content(
+            model=self.model_name,
+            contents=data_str,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+            ),
+        )
+        return response.text.strip()
 
     # ── Helper: fetch OHLCV ──────────────────────────────────────────
     async def _fetch_ohlcv(self, symbol: str, limit: int = 24) -> list:
@@ -149,18 +172,16 @@ class Market(commands.Cog, name="📊 市場分析"):
 
             # 2) Generate AI commentary
             data_str = self._format_ohlcv(ohlcv, symbol)
+
             try:
-                response = await self.client.aio.models.generate_content(
-                    model=self.model_name,
-                    contents=data_str,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
-                    ),
-                )
-                commentary = response.text.strip()
+                # Use the new helper method with retry
+                commentary = await self._generate_content_with_retry(data_str)
             except Exception as exc:
-                logger.error("Gemini API error: %s", exc)
-                commentary = "（AI 分析暫時無法取得，可能是被市場嚇到了 😱）"
+                logger.error("Gemini API error (after retries): %s", exc, exc_info=True)
+                if "429" in str(exc) or "RESOURCE_EXHAUSTED" in str(exc):
+                    commentary = "（AI 分析太熱門了，暫時冷卻中... ❄️ 請稍後再試）"
+                else:
+                    commentary = f"（AI 分析暫時無法取得，錯誤：{str(exc)[:50]}...）"
 
             # 3) Parse trend from commentary
             if "看漲" in commentary or "🟢" in commentary:
@@ -309,4 +330,3 @@ class Market(commands.Cog, name="📊 市場分析"):
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Market(bot))
-
