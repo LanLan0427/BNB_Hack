@@ -203,7 +203,7 @@ class Market(commands.Cog, name="📊 市場分析"):
             embed.add_field(name="💰 當前價格", value=f"`${current_price:,.4f}`", inline=True)
             embed.add_field(name="📈 趨勢判斷", value=trend, inline=True)
             embed.add_field(name="🤖 AI 狙擊手點評", value=commentary, inline=False)
-            embed.set_footer(text="⚠️ 僅供娛樂，不構成投資建議 | Quant Sniper Bot")
+            embed.set_footer(text="⚠️ 僅供娛樂，不構成投資建議 | Paper Degen Bot")
 
             await ctx.send(embed=embed)
 
@@ -323,7 +323,7 @@ class Market(commands.Cog, name="📊 市場分析"):
             embed.add_field(name="💰 當前價格", value=f"`${current_price:,.4f}`", inline=True)
             embed.add_field(name="📊 RSI(14)", value=rsi_text, inline=True)
             embed.set_image(url="attachment://chart.png")
-            embed.set_footer(text="1H 時間框架 · SMA 20 · RSI 14 | Quant Sniper Bot")
+            embed.set_footer(text="1H 時間框架 · SMA 20 · RSI 14 | Paper Degen Bot")
 
             await ctx.send(embed=embed, file=discord.File(buf, filename="chart.png"))
 

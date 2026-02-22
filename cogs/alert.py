@@ -118,7 +118,7 @@ class Alert(commands.Cog, name="🔔 價格警報"):
                     value=f"`${price:,.4f}`",
                     inline=True,
                 )
-                embed.set_footer(text="Quant Sniper — 價格警報")
+                embed.set_footer(text="Paper Degen — 價格警報")
 
                 user = await self.bot.fetch_user(alert.user_id)
                 await channel.send(f"{user.mention} 你的警報響了！", embed=embed)
@@ -225,7 +225,7 @@ class Alert(commands.Cog, name="🔔 價格警報"):
             )
 
         embed.add_field(name="警報列表", value="\n".join(lines), inline=False)
-        embed.set_footer(text="用 !clearalerts 清除所有警報 | Quant Sniper")
+        embed.set_footer(text="用 !clearalerts 清除所有警報 | Paper Degen")
 
         await ctx.send(embed=embed)
 

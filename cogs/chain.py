@@ -159,10 +159,10 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                 if receipt["status"] == 1:
                     if "opBNB" in self.network_name:
                         explorer_url = f"https://opbnb-testnet.bscscan.com/tx/{tx_hash.hex()}"
-                        footer_text = "Quant Sniper — opBNB Testnet (Layer 2)"
+                        footer_text = "Paper Degen — opBNB Testnet (Layer 2)"
                     else:
                         explorer_url = f"https://testnet.bscscan.com/tx/{tx_hash.hex()}"
-                        footer_text = "Quant Sniper — BSC Testnet"
+                        footer_text = "Paper Degen — BSC Testnet"
 
                     embed = discord.Embed(
                         title="⛓️ 鏈上提交成功！",
@@ -232,7 +232,7 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                 lines.append(f"{medal} **{name}** — {emoji} `{roi_pct:+.2f}%`")
 
             embed.add_field(name="排名", value="\n".join(lines), inline=False)
-            embed.set_footer(text="Quant Sniper — 用 !submit 提交你的成績")
+            embed.set_footer(text="Paper Degen — 用 !submit 提交你的成績")
 
             await ctx.send(embed=embed)
 

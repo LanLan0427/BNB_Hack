@@ -199,7 +199,7 @@ class Game(commands.Cog, name="🎮 模擬交易"):
             value=f"`${self.db.get_balance(user_id):,.2f}` USDT",
             inline=True,
         )
-        embed.set_footer(text="Quant Sniper — 模擬交易")
+        embed.set_footer(text="Paper Degen — 模擬交易")
         await ctx.send(embed=embed)
 
     # ── Command: /sell ───────────────────────────────────────────────
@@ -274,7 +274,7 @@ class Game(commands.Cog, name="🎮 模擬交易"):
             value=f"`${self.db.get_balance(user_id):,.2f}` USDT",
             inline=False,
         )
-        embed.set_footer(text="Quant Sniper — 模擬交易")
+        embed.set_footer(text="Paper Degen — 模擬交易")
         await ctx.send(embed=embed)
 
     # ── Command: /portfolio ──────────────────────────────────────────
@@ -332,7 +332,7 @@ class Game(commands.Cog, name="🎮 模擬交易"):
         embed.add_field(name="💵 現金餘額", value=f"`${balance:,.2f}` USDT", inline=True)
         embed.add_field(name="💎 總資產", value=f"`${total_value:,.2f}` USDT", inline=True)
         embed.add_field(name=f"{roi_emoji} 總 ROI", value=f"`{roi:+.2f}%`", inline=True)
-        embed.set_footer(text="Quant Sniper — 模擬交易 | 初始資金 $10,000 USDT")
+        embed.set_footer(text="Paper Degen — 模擬交易 | 初始資金 $10,000 USDT")
 
         await ctx.send(embed=embed)
 

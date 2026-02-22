@@ -1,5 +1,5 @@
 """
-Quant Sniper — AI Trading Assistant Discord Bot
+Paper Degen — AI Trading Assistant Discord Bot
 Entry point: loads environment, initialises the bot, and registers cogs.
 """
 
