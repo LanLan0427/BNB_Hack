@@ -17,7 +17,11 @@
 
 ## 📖 專案簡介
 
-**Paper Degen（模擬交易達人）** 是一個為 **BNB Hack: Online Edition** 打造的 Discord Bot，旨在降低加密貨幣交易的門檻。透過 AI 驅動的市場分析和模擬交易遊戲，讓任何人都能零風險地體驗交易世界。
+**Paper Degen（模擬交易達人）** 是一個為 **BNB Hack: Online Edition (AI Track)** 打造的 Discord Bot，旨在降低加密貨幣交易的門檻。透過 AI 驅動的市場分析和模擬交易遊戲，讓任何人都能零風險地體驗交易世界。
+
+## 🎥 Demo 影片與簡報 (Hackathon Submission)
+- **Pitch Deck**: [預留位] (Coming Soon)
+- **Demo Video**: [預留位] (Coming Soon)
 
 ### 🌟 核心特色
 
@@ -141,9 +145,40 @@ paper-degen/
 | `ccxt` | Binance 市場數據 API |
 | `google-generativeai` | Gemini AI 市場分析 |
 | `web3.py` | BNB Chain 智能合約互動 |
+| `solcx` / `web3.py` | 智能合約互動與部署 |
 | `sqlite3` | 本地模擬交易資料儲存 |
 | `Solidity` | 鏈上排行榜智能合約 |
 | `tenacity` | API 重試機制 (Rate Limit Handling) |
+
+---
+
+## 🗺️ Roadmap (未來藍圖)
+
+為了在黑客松之後繼續發展，**Paper Degen** 規畫了以下發展路線：
+
+- **Phase 1: 完善 AI 顧問功能 (Q3 2024)**
+  - 引入更多技術指標 (RSI, MACD 等) 供 AI 分析。
+  - 支援更多 BNB Chain 上的 DeFi 協議。
+- **Phase 2: 真實資金交易整合 (Q4 2024)**
+  - 當使用者準備好時，提供從「模擬交易」切換至「真實交易」的選項（透過 Web3 錢包簽名，整合 opBNB DEX，如 PancakeSwap）。
+  - AI 提供即時的執行價格滑點 (Slippage) 警告。
+- **Phase 3: 社交金融與 DAO (Q1 2025)**
+  - 推出 Copy Trading (跟單) 功能，讓新手能自動跟隨排行榜高手的操作。
+  - 成立 Degen DAO，由社群治理 AI 模型的升級方向與合約參數。
+
+---
+
+## 💼 Business Model (商業模式)
+
+為了確保專案的長期維運與可持續發展，我們設計了以下收益模式：
+
+1. **進階 AI 分析訂閱 (Premium Subscription)**
+   - 基礎使用者享有每日一定次數的免費 AI 分析。
+   - 訂閱制用戶可解鎖「無限制 AI 額度」、「深度市場報告」以及「專屬交易策略推薦」。
+2. **交易手續費分潤 (Transaction Fee Sharing)**
+   - 在未來整合真實 DEX 交易後 (Phase 2)，推薦使用者前往合作的 DEX（例如 BNB Chain 上的 DEX）進行交易，並從中獲取推薦手續費或微量滑點收益。
+3. **Copy Trading 分潤機制**
+   - 平台從跟單獲利中抽取小比例手續費，並分潤給提供策略的「排行榜達人」，激勵更多優秀交易員加入。
 
 ---
 
