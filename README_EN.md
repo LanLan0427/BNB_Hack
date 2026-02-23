@@ -159,13 +159,13 @@ paper-degen/
 
 To continue development after the hackathon, **Paper Degen** has planned the following roadmap:
 
-- **Phase 1: Enhance AI Advisor Features (Q3 2024)**
+- **Phase 1: Enhance AI Advisor Features (Q2 2026)**
   - Introduce more technical indicators (RSI, MACD, etc.) for AI analysis.
   - Support more DeFi protocols on the BNB Chain.
-- **Phase 2: Real Funds Trading Integration (Q4 2024)**
+- **Phase 2: Real Funds Trading Integration (Q3 2026)**
   - When users are ready, provide an option to switch from "Mock Trading" to "Real Trading" (via Web3 Wallet signatures, integrating opBNB DEXs like PancakeSwap).
   - AI provides real-time execution price slippage warnings.
-- **Phase 3: Social Finance & DAO (Q1 2025)**
+- **Phase 3: Social Finance & DAO (Q4 2026)**
   - Launch a Copy Trading feature, allowing beginners to automatically follow the operations of top players on the leaderboard.
   - Establish the Degen DAO, governed by the community to decide the AI model upgrade direction and contract parameters.
 

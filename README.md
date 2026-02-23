@@ -158,13 +158,13 @@ paper-degen/
 
 為了在黑客松之後繼續發展，**Paper Degen** 規畫了以下發展路線：
 
-- **Phase 1: 完善 AI 顧問功能 (Q3 2024)**
+- **Phase 1: 完善 AI 顧問功能 (Q2 2026)**
   - 引入更多技術指標 (RSI, MACD 等) 供 AI 分析。
   - 支援更多 BNB Chain 上的 DeFi 協議。
-- **Phase 2: 真實資金交易整合 (Q4 2024)**
+- **Phase 2: 真實資金交易整合 (Q3 2026)**
   - 當使用者準備好時，提供從「模擬交易」切換至「真實交易」的選項（透過 Web3 錢包簽名，整合 opBNB DEX，如 PancakeSwap）。
   - AI 提供即時的執行價格滑點 (Slippage) 警告。
-- **Phase 3: 社交金融與 DAO (Q1 2025)**
+- **Phase 3: 社交金融與 DAO (Q4 2026)**
   - 推出 Copy Trading (跟單) 功能，讓新手能自動跟隨排行榜高手的操作。
   - 成立 Degen DAO，由社群治理 AI 模型的升級方向與合約參數。
 
