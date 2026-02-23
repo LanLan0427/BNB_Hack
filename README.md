@@ -1,5 +1,7 @@
 # 🎯 Paper Degen — AI 模擬交易達人
 
+*[Read this in English](README_EN.md)*
+
 <div align="center">
 
 **BNB Chain 上的 AI 交易助手 Discord Bot**
