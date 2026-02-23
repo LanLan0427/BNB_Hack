@@ -75,8 +75,8 @@ graph TB
 
 ```bash
 # 1. Clone 專案
-git clone https://github.com/LanLan0427/BNB_Hack.git
-cd BNB_Hack
+git clone https://github.com/LanLan0427/Paper_Degen.git
+cd Paper_Degen
 
 # 2. 建立虛擬環境
 python -m venv .venv
