@@ -24,7 +24,7 @@
 ## 🎥 Hackathon 提交資料 (BNB Hack: Online Edition)
 - **Pitch Deck**: `Paper_Degen presentation deck.pdf` (隨大會表單附上)
 - **Challenge Tweet**: [View on X (Twitter)](https://x.com/coding_mouse_/status/2026318277149077890)
-- **Demo Video**: [YouTube Link] <!-- 請於此替換為您的 YouTube 實際連結 -->
+- **Demo Video**: [YouTube Link](https://youtu.be/YKEVcFerK7M) <!-- 請於此替換為您的 YouTube 實際連結 -->
 
 ### 🌟 核心特色
 
