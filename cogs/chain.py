@@ -165,13 +165,13 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                         footer_text = "Paper Degen — BSC Testnet"
 
                     embed = discord.Embed(
-                        title="⛓️ 鏈上提交成功！",
+                        title="⛓️ On-Chain Submission Successful!",
                         color=0x00E676,
                         timestamp=datetime.now(tz=timezone.utc),
                     )
-                    embed.add_field(name="📊 你的 ROI", value=f"`{roi_pct:+.2f}%`", inline=True)
+                    embed.add_field(name="📊 Your ROI", value=f"`{roi_pct:+.2f}%`", inline=True)
                     embed.add_field(
-                        name="🔗 交易 Hash",
+                        name="🔗 Transaction Hash",
                         value=f"[View on Explorer]({explorer_url})",
                         inline=True,
                     )
@@ -208,8 +208,8 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
             sorted_players = sorted(players, key=lambda p: p[2], reverse=True)
 
             embed = discord.Embed(
-                title="🏆 鏈上模擬交易排行榜",
-                description="資料來源：BNB Chain (BSC Testnet)",
+                title="🏆 On-Chain Mock Trading Leaderboard",
+                description="Data Source: BNB Chain (BSC Testnet/opBNB)",
                 color=0xF0B90B,  # BNB 黃
                 timestamp=datetime.now(tz=timezone.utc),
             )
@@ -231,8 +231,8 @@ class Chain(commands.Cog, name="⛓️ 鏈上功能"):
                 emoji = "📈" if roi_bps >= 0 else "📉"
                 lines.append(f"{medal} **{name}** — {emoji} `{roi_pct:+.2f}%`")
 
-            embed.add_field(name="排名", value="\n".join(lines), inline=False)
-            embed.set_footer(text="Paper Degen — 用 !submit 提交你的成績")
+            embed.add_field(name="Rankings", value="\n".join(lines), inline=False)
+            embed.set_footer(text="Paper Degen — Use !submit to record your score")
 
             await ctx.send(embed=embed)
 

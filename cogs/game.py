@@ -186,20 +186,20 @@ class Game(commands.Cog, name="🎮 模擬交易"):
             self.db.update_balance(user_id, -amount)
 
         embed = discord.Embed(
-            title="✅ 買入成功",
+            title="✅ Buy Successful",
             color=0x00E676,
             timestamp=datetime.now(tz=timezone.utc),
         )
-        embed.add_field(name="交易對", value=f"`{symbol}`", inline=True)
-        embed.add_field(name="成交價", value=f"`${price:,.4f}`", inline=True)
-        embed.add_field(name="買入數量", value=f"`{qty_bought:,.6f}`", inline=True)
-        embed.add_field(name="花費", value=f"`${amount:,.2f}` USDT", inline=True)
+        embed.add_field(name="Symbol", value=f"`{symbol}`", inline=True)
+        embed.add_field(name="Execution Price", value=f"`${price:,.4f}`", inline=True)
+        embed.add_field(name="Quantity", value=f"`{qty_bought:,.6f}`", inline=True)
+        embed.add_field(name="Cost", value=f"`${amount:,.2f}` USDT", inline=True)
         embed.add_field(
-            name="剩餘餘額",
+            name="Remaining Balance",
             value=f"`${self.db.get_balance(user_id):,.2f}` USDT",
             inline=True,
         )
-        embed.set_footer(text="Paper Degen — 模擬交易")
+        embed.set_footer(text="Paper Degen — Mock Trading")
         await ctx.send(embed=embed)
 
     # ── Command: /sell ───────────────────────────────────────────────
@@ -256,25 +256,25 @@ class Game(commands.Cog, name="🎮 模擬交易"):
         pnl_emoji = "📈" if pnl >= 0 else "📉"
 
         embed = discord.Embed(
-            title="✅ 賣出成功",
+            title="✅ Sell Successful",
             color=0xFF9100 if pnl >= 0 else 0xFF1744,
             timestamp=datetime.now(tz=timezone.utc),
         )
-        embed.add_field(name="交易對", value=f"`{symbol}`", inline=True)
-        embed.add_field(name="成交價", value=f"`${price:,.4f}`", inline=True)
-        embed.add_field(name="賣出數量", value=f"`{quantity:,.6f}`", inline=True)
-        embed.add_field(name="入帳", value=f"`${proceeds:,.2f}` USDT", inline=True)
+        embed.add_field(name="Symbol", value=f"`{symbol}`", inline=True)
+        embed.add_field(name="Execution Price", value=f"`${price:,.4f}`", inline=True)
+        embed.add_field(name="Quantity Sold", value=f"`{quantity:,.6f}`", inline=True)
+        embed.add_field(name="Proceeds", value=f"`${proceeds:,.2f}` USDT", inline=True)
         embed.add_field(
-            name=f"{pnl_emoji} 本次損益",
+            name=f"{pnl_emoji} PNL",
             value=f"`${pnl:+,.2f}` ({pnl_pct:+.2f}%)",
             inline=True,
         )
         embed.add_field(
-            name="剩餘餘額",
+            name="Remaining Balance",
             value=f"`${self.db.get_balance(user_id):,.2f}` USDT",
             inline=False,
         )
-        embed.set_footer(text="Paper Degen — 模擬交易")
+        embed.set_footer(text="Paper Degen — Mock Trading")
         await ctx.send(embed=embed)
 
     # ── Command: /portfolio ──────────────────────────────────────────
@@ -288,7 +288,7 @@ class Game(commands.Cog, name="🎮 模擬交易"):
         holdings = self.db.get_all_holdings(user_id)
 
         embed = discord.Embed(
-            title=f"💼 {ctx.author.display_name} 的投資組合",
+            title=f"💼 {ctx.author.display_name}'s Portfolio",
             color=0x448AFF,
             timestamp=datetime.now(tz=timezone.utc),
         )
@@ -313,26 +313,26 @@ class Game(commands.Cog, name="🎮 模擬交易"):
                     emoji = "🟢" if pnl >= 0 else "🔴"
                     lines.append(
                         f"{emoji} **{h['symbol']}**\n"
-                        f"   數量：`{h['quantity']:,.6f}` | 均價：`${h['avg_price']:,.4f}`\n"
-                        f"   現價：`${price:,.4f}` | 市值：`${market_val:,.2f}`\n"
-                        f"   損益：`${pnl:+,.2f}` ({pnl_pct:+.2f}%)"
+                        f"   Qty: `{h['quantity']:,.6f}` | Avg: `${h['avg_price']:,.4f}`\n"
+                        f"   Price: `${price:,.4f}` | Value: `${market_val:,.2f}`\n"
+                        f"   PNL: `${pnl:+,.2f}` ({pnl_pct:+.2f}%)"
                     )
 
                 embed.add_field(
-                    name="📦 持倉明細",
-                    value="\n\n".join(lines) if lines else "（無持倉）",
+                    name="📦 Holding Details",
+                    value="\n\n".join(lines) if lines else "(No Holdings)",
                     inline=False,
                 )
         else:
-            embed.add_field(name="📦 持倉明細", value="（無持倉）", inline=False)
+            embed.add_field(name="📦 Holding Details", value="(No Holdings)", inline=False)
 
         roi = ((total_value / INITIAL_BALANCE) - 1) * 100
         roi_emoji = "📈" if roi >= 0 else "📉"
 
-        embed.add_field(name="💵 現金餘額", value=f"`${balance:,.2f}` USDT", inline=True)
-        embed.add_field(name="💎 總資產", value=f"`${total_value:,.2f}` USDT", inline=True)
-        embed.add_field(name=f"{roi_emoji} 總 ROI", value=f"`{roi:+.2f}%`", inline=True)
-        embed.set_footer(text="Paper Degen — 模擬交易 | 初始資金 $10,000 USDT")
+        embed.add_field(name="💵 Cash Balance", value=f"`${balance:,.2f}` USDT", inline=True)
+        embed.add_field(name="💎 Total Asset Value", value=f"`${total_value:,.2f}` USDT", inline=True)
+        embed.add_field(name=f"{roi_emoji} Total ROI", value=f"`{roi:+.2f}%`", inline=True)
+        embed.set_footer(text="Paper Degen — Mock Trading | Initial $10,000 USDT")
 
         await ctx.send(embed=embed)
 

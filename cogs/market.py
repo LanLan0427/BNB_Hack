@@ -29,20 +29,19 @@ import matplotlib.dates as mdates
 logger = logging.getLogger("quant_sniper.market")
 
 # ── Gemini system prompt ─────────────────────────────────────────────
-SYSTEM_PROMPT = """你是「量化狙擊手」，一位尖酸刻薄、幽默風趣的華爾街老手交易員。
-你的任務是根據提供的 OHLCV（開盤、最高、最低、收盤、成交量）數據，
-給出簡短但犀利的市場分析。
+SYSTEM_PROMPT = """You are "Quant Sniper," a sarcastic, humorous, and seasoned Wall Street veteran.
+Your task is to provide a brief but sharp market analysis based on the provided OHLCV data.
 
-規則：
-1. 使用繁體中文回覆。
-2. 語氣要像一位見過無數韭菜的老油條，帶著黑色幽默。
-3. 回覆格式必須嚴格如下（不要加任何多餘標記）：
+Rules:
+1. Always reply in English.
+2. Adopt the tone of a cynical veteran who has seen countless retail traders get wrecked, using dark humor.
+3. The response format must strictly follow this structure (no extra markdown):
 
-趨勢：[看漲 🟢 / 看跌 🔴 / 盤整 ⚪]
-分析：[2-3 句犀利評論]
-建議：[一句話，可以搞笑但要有道理]
+Trend: [Bullish 🟢 / Bearish 🔴 / Sideways ⚪]
+Analysis: [2-3 sharp, sarcastic sentences]
+Advice: [One funny but logical sentence]
 
-4. 不要提供具體的買賣建議或價格目標，這只是娛樂性質的分析。
+4. Do not provide specific buying/selling advice or price targets; this is strictly for entertainment.
 """
 
 
@@ -184,26 +183,26 @@ class Market(commands.Cog, name="📊 市場分析"):
                     commentary = f"（AI 分析暫時無法取得，錯誤：{str(exc)[:50]}...）"
 
             # 3) Parse trend from commentary
-            if "看漲" in commentary or "🟢" in commentary:
-                trend = "🟢 看漲 Bullish"
+            if "Bullish" in commentary or "🟢" in commentary:
+                trend = "🟢 Bullish"
                 embed_color = 0x00E676
-            elif "看跌" in commentary or "🔴" in commentary:
-                trend = "🔴 看跌 Bearish"
+            elif "Bearish" in commentary or "🔴" in commentary:
+                trend = "🔴 Bearish"
                 embed_color = 0xFF1744
             else:
-                trend = "⚪ 盤整 Sideways"
+                trend = "⚪ Sideways"
                 embed_color = 0x90A4AE
 
             # 4) Build embed
             embed = discord.Embed(
-                title=f"📊 {symbol} 市場分析",
+                title=f"📊 {symbol} Market Analysis",
                 color=embed_color,
                 timestamp=datetime.now(tz=timezone.utc),
             )
-            embed.add_field(name="💰 當前價格", value=f"`${current_price:,.4f}`", inline=True)
-            embed.add_field(name="📈 趨勢判斷", value=trend, inline=True)
-            embed.add_field(name="🤖 AI 狙擊手點評", value=commentary, inline=False)
-            embed.set_footer(text="⚠️ 僅供娛樂，不構成投資建議 | Paper Degen Bot")
+            embed.add_field(name="💰 Current Price", value=f"`${current_price:,.4f}`", inline=True)
+            embed.add_field(name="📈 Trend", value=trend, inline=True)
+            embed.add_field(name="🤖 AI Sniper Analysis", value=commentary, inline=False)
+            embed.set_footer(text="⚠️ For entertainment only. Not financial advice. | Paper Degen Bot")
 
             await ctx.send(embed=embed)
 
