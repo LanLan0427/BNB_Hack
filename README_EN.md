@@ -23,6 +23,7 @@ Allowing anyone, even crypto beginners, to easily experience the thrill of tradi
 
 ## 🎥 Hackathon Submission (BNB Hack: Online Edition)
 - **Pitch Deck**: [View Presentation Deck](./Paper_Degen%20presentation%20deck.pdf)
+- **Whitepaper**: [View Whitepaper](./Paper_Degen%20—%20Whitepaper.pdf)
 - **Challenge Tweet**: [View on X (Twitter)](https://x.com/coding_mouse_/status/2026318277149077890)
 - **Demo Video**: [YouTube Link](https://youtu.be/YKEVcFerK7M) <!-- Please replace this with your actual YouTube link -->
 

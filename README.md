@@ -23,6 +23,7 @@
 
 ## 🎥 Hackathon 提交資料 (BNB Hack: Online Edition)
 - **Pitch Deck**: [View Presentation Deck](./Paper_Degen%20presentation%20deck.pdf)
+- **Whitepaper**: [View Whitepaper](./Paper_Degen%20—%20Whitepaper.pdf)
 - **Challenge Tweet**: [View on X (Twitter)](https://x.com/coding_mouse_/status/2026318277149077890)
 - **Demo Video**: [YouTube Link](https://youtu.be/YKEVcFerK7M) <!-- 請於此替換為您的 YouTube 實際連結 -->
 
