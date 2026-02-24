@@ -21,9 +21,10 @@ Allowing anyone, even crypto beginners, to easily experience the thrill of tradi
 
 **Paper Degen** is a Discord Bot built for the **BNB Hack: Online Edition (AI Track)**, designed to lower the barrier to entry for cryptocurrency trading. Driven by AI market analysis and a mock trading game, it allows anyone to experience the trading world with zero risk.
 
-## 🎥 Demo Video & Pitch Deck (Hackathon Submission)
-- **Pitch Deck**: [Placeholder] (Coming Soon)
-- **Demo Video**: [Placeholder] (Coming Soon)
+## 🎥 Hackathon Submission (BNB Hack: Online Edition)
+- **Pitch Deck**: `Paper_Degen presentation deck.pdf` (Included in submission form)
+- **Challenge Tweet**: [View on X (Twitter)](https://x.com/coding_mouse_/status/2026318277149077890)
+- **Demo Video**: [YouTube Link] <!-- Please replace this with your actual YouTube link -->
 
 ### 🌟 Core Features
 

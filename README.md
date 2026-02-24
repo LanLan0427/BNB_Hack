@@ -21,9 +21,10 @@
 
 **Paper Degen（模擬交易達人）** 是一個為 **BNB Hack: Online Edition (AI Track)** 打造的 Discord Bot，旨在降低加密貨幣交易的門檻。透過 AI 驅動的市場分析和模擬交易遊戲，讓任何人都能零風險地體驗交易世界。
 
-## 🎥 Demo 影片與簡報 (Hackathon Submission)
-- **Pitch Deck**: [預留位] (Coming Soon)
-- **Demo Video**: [預留位] (Coming Soon)
+## 🎥 Hackathon 提交資料 (BNB Hack: Online Edition)
+- **Pitch Deck**: `Paper_Degen presentation deck.pdf` (隨大會表單附上)
+- **Challenge Tweet**: [View on X (Twitter)](https://x.com/coding_mouse_/status/2026318277149077890)
+- **Demo Video**: [YouTube Link] <!-- 請於此替換為您的 YouTube 實際連結 -->
 
 ### 🌟 核心特色
 
